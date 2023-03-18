@@ -1,16 +1,16 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
+
 int main()
 {
-    ifstream in_file("instrukcje.txt");
-    // ifstream in_file("przyklad.txt");
+    ifstream in_file("przyklad.txt");
+    // ifstream in_file("instrukcje.txt");
 
-
-
-    string polecenie;
+    string polecenie = "";
     char znak;
 
     string napis = "";
@@ -23,7 +23,7 @@ int main()
     int maksymalny_ciag = 0;
     string rodzaj_instrukcji = "";
 
-    int tablica_liter[100];  // czy bêd¹ zera
+    int tablica_liter[100];
     for(int i = 0; i < 100; i++){
         tablica_liter[i] = 0;
     }
@@ -33,6 +33,7 @@ int main()
             cout << polecenie << " " << znak << endl;
 
             if (polecenie == "DOPISZ"){
+
                 napis += znak;
 
                 ile_dopisz++;
@@ -70,11 +71,11 @@ int main()
 
             if (polecenie == "PRZESUN")
             {
-                int index = napis.find(znak);
+                int indeks = napis.find(znak);
 
                 // cout << "index: " << index << endl;
 
-                char c = (char)napis[index];
+                char c = (char)napis[indeks];
 
                 // cout << "znak: " << c << endl;
 
@@ -86,7 +87,7 @@ int main()
                 {
                     c = c + 1;
                 }
-                napis[index] = c;
+                napis[indeks] = c;
 
                 ile_dopisz = 0;
                 ile_zmien = 0;
@@ -119,9 +120,11 @@ int main()
                 maksymalny_ciag = ile_przesun;
                 rodzaj_instrukcji = polecenie;
             }
+
     }
 
     ofstream wyniki("wyniki4.txt");
+
     wyniki << "4.1 " << napis.length() << endl;
 
     wyniki << "4.2 " << rodzaj_instrukcji << " " << maksymalny_ciag << endl;
